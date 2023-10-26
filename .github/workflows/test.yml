@@ -12,5 +12,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: docker-compose up -d
-      - run: npm test
+      - run: docker-compose exec chatlog npm test
       - run: docker-compose down
