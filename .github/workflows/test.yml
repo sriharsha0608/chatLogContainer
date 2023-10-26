@@ -1,18 +1,16 @@
-name: App test
+name: Automated Test ChatLog
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches:
+      - main
+
 jobs:
   test:
-    runs-on: node
-    stage: test
-      script:
-      - docker-compose up -d
-      - docker-compose exec chatlog npm test
-      after_script:
-               - docker-compose down
-  tags: 
-    - docker
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - run: docker-compose up -d
+      - run: npm test
+      - run: docker-compose down
