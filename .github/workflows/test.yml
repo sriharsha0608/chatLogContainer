@@ -1,0 +1,18 @@
+name: App test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  test:
+    runs-on: node
+    stage: test
+      script:
+      - docker-compose up -d
+      - docker-compose exec chatlog npm test
+      after_script:
+               - docker-compose down
+  tags: 
+    - docker
